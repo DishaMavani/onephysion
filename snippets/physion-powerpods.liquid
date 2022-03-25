@@ -1,0 +1,553 @@
+<div class="physion-powerpods-section">
+<section id="product-page-section">
+  <div class="container-custom2 mx-auto container container-custom-product-mobile">
+    <div class="row row-custom-product-page">
+      <div class="col-lg-6 col-custom-product-carousel-mobile">
+        <div class="product-page-contain-custom">
+          <div class="swipper-product-page show-desktop">
+            <div
+                 style="--swiper-navigation-color: rgba(255, 255, 255, 0); --swiper-pagination-color: #fff"
+                 class="swiper-container mySwiper2"
+                 >
+              <div class="swiper-wrapper">
+                {% for media in product.media %}
+                <div class="swiper-slide custom-swiper-slide-product">
+                  <img loading="lazy" src="{{ media.preview_image | img_url: '836x736', scale: 2 }}" alt="">
+                </div>
+                {% endfor %}
+              </div>
+              <div class="swiper-button-next">
+                <img loading="lazy" src="{{ 'arrow-left-product.png' | asset_url }}" alt="" class="img-arrow-product-r">
+              </div>
+              <div class="swiper-button-prev">
+                <img loading="lazy" src="{{ 'arrow-left-product.png' | asset_url }}" alt="" class="img-arrow-product-l">
+              </div>
+            </div>
+            <div thumbsSlider="" class="swiper-container mySwiper">
+              <div class="swiper-wrapper">
+                {% for media in product.media %}
+                <div class="swiper-slide custom-swiper-slide-product-small">
+                  <img loading="lazy" src="{{ media.preview_image | img_url: '76x70', scale: 2 }}" />
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+          <div class="content-performance-product-carousel-3 header-custom-product-mobile show-mobile ">
+            <div class="swiper-container product-carousel-3 custom-product-mobile">
+              <!-- Additional required wrapper -->
+              <div class="swiper-wrapper">
+                {% for media in product.media %}
+                <div class="swiper-slide custom-swiper-slide-product">
+                  <img loading="lazy" src="{{ media.preview_image | img_url: '836x736', scale: 2 }}" alt="">
+                </div>
+                {% endfor %}
+              </div>
+              <!-- If we need scrollbar -->
+              <div class="swiper-pagination"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="product-cart-description">
+          <div class="rating-car-product show-desktop">
+            <a href="#looxReviews" class="link-scroll"><div class="loox-rating" data-id="{{ product.id }}" data-rating="{{ product.metafields.loox.avg_rating }}" data-raters="{{ product.metafields.loox.num_reviews }}"   data-pattern="[count] Reviews"></div></a>
+          </div>
+          <div class="tilte-and-price-product">
+            <div class="rating-car-product show-mobile">
+              <a href="#looxReviews" class="link-scroll" class="link-scroll"><div class="loox-rating" data-id="{{ product.id }}" data-rating="{{ product.metafields.loox.avg_rating }}" data-raters="{{ product.metafields.loox.num_reviews }}"   data-pattern="[count] Reviews"></div></a>
+            </div>
+            <h2>{{ product.title }}</h2>
+            <div class="product-price">
+              <h4 class="price-discont price-payments" data-price="{{product.price | money_without_currency}}">
+                £ {{product.price | money_without_currency}}
+              </h4>
+              <h4 class="price-normal">
+                £ {{ product.compare_at_price| money_without_currency}}
+              </h4>
+              <p class="price-payments" data-price="{{ product.price | money_without_currency}}">
+                or 3 payments of <span class="afterpayKlarna"></span> with Klarna
+              </p>
+            </div>
+          </div>
+          <form action="" id="form_product" name="form_product" data-productid="{{ product.id }}" method="POST" data-productid="{{ product.id }}">            
+            {% if product.variants.size > 1 %}
+            <div class="select-color-product">
+              <div class="select-color-radius">
+                <h4 class="select-color">
+                  Select Color:
+                </h4>
+                <div class="box-color-checkbox-radius">
+                  <div class="item-radio-colors">
+                    {% for variant in product.variants %}
+                    <div class="item-radio-custom1">
+                      <input type="radio" class="colorSelect" data-productid="{{product.id}}" name="id" id="{{ variant.title }}" value="{{ variant.id }}" {%- if variant == current_variant %} checked="checked" {%- endif -%}/>
+                      <label for="{{ variant.title }}"><span class="circle-color {{ variant.title }}"></span><span class="text-color">{{ variant.title }}</span></label>
+                    </div>
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endif %}
+            <div class="buttom-buy-cart">
+              {%- if product.available -%}
+              <button class="btn-design2 new_cutom_add_to_cart" type="submit">Add to Cart</button>
+              <a href="https://onephysion.myshopify.com/cart/{{ product.selected_or_first_available_variant.id  }}:1" class="btn-design1 new_add_a varinat_add_id">BUY IT NOW</a>
+              {%- else -%}
+              <button class="btn-design2 new_cutom_add_to_cart sold_out__btn">coming soon</button>
+              {%- endif -%}
+            </div>
+                    
+            <div class="bottom-checkout-product new_custom_checkout_product">
+<!--               <h3 class="checkout-title1">
+                Checkout today. Interest free.
+              </h3> -->
+              <div class="item-checkout-product">
+                <svg role="img" class="badge" focusable="false" viewBox="0 0 38 22" version="1.1" xmlns="http://www.w3.org/2000/svg"><title>Klarna badge</title><path d="M34.9997,22.0004 L2.9997,22.0004 C1.3437,22.0004 -0.0003,20.6564 -0.0003,19.0004 L-0.0003,3.0004 C-0.0003,1.3434 1.3437,0.0004 2.9997,0.0004 L34.9997,0.0004 C36.6567,0.0004 37.9997,1.3434 37.9997,3.0004 L37.9997,19.0004 C37.9997,20.6564 36.6567,22.0004 34.9997,22.0004" fill="rgba(255, 179, 199, 1)"></path><path d="M30.5661,13.3275 C29.8181,13.3275 29.2121,12.7535 29.2121,12.0435 C29.2121,11.3345 29.8181,10.7605 30.5661,10.7605 C31.3141,10.7605 31.9201,11.3345 31.9201,12.0435 C31.9201,12.7535 31.3141,13.3275 30.5661,13.3275 L30.5661,13.3275 Z M31.9241,9.5485 L31.9241,9.8675 C31.5031,9.5795 30.9931,9.4105 30.4441,9.4105 C28.9891,9.4105 27.8101,10.5895 27.8101,12.0435 C27.8101,13.4985 28.9891,14.6775 30.4441,14.6775 C30.9931,14.6775 31.5031,14.5085 31.9241,14.2205 L31.9241,14.5395 L33.4201,14.5395 L33.4201,9.5485 L31.9241,9.5485 Z" fill="rgba(23, 23, 23, 1)"></path><path d="M8.7917,7.3226 L7.1707,7.3226 C7.1707,8.6506 6.5607,9.8706 5.4947,10.6686 L4.8537,11.1486 L7.3407,14.5416 L9.3867,14.5416 L7.0977,11.4196 C8.1827,10.3396 8.7917,8.8846 8.7917,7.3226" fill="rgba(23, 23, 23, 1)"></path><path d="M2.995,14.541 L4.655,14.541 L4.655,7.322 L2.995,7.322" fill="rgba(23, 23, 23, 1)"></path><path d="M9.869,14.539 L11.433,14.539 L11.433,7.324 L9.869,7.324" fill="rgba(23, 23, 23, 1)"></path><path d="M25.1549,9.4144 C24.5579,9.4144 23.9929,9.5994 23.6149,10.1104 L23.6149,9.5484 L22.1279,9.5484 L22.1279,14.5394 L23.6339,14.5394 L23.6339,11.9164 C23.6339,11.1574 24.1419,10.7854 24.7559,10.7854 C25.4119,10.7854 25.7899,11.1784 25.7899,11.9054 L25.7899,14.5394 L27.2819,14.5394 L27.2819,11.3654 C27.2819,10.2034 26.3589,9.4144 25.1549,9.4144" fill="rgba(23, 23, 23, 1)"></path><path d="M14.8014,13.3275 C14.0534,13.3275 13.4474,12.7535 13.4474,12.0435 C13.4474,11.3345 14.0534,10.7605 14.8014,10.7605 C15.5494,10.7605 16.1554,11.3345 16.1554,12.0435 C16.1554,12.7535 15.5494,13.3275 14.8014,13.3275 L14.8014,13.3275 Z M16.1604,9.5485 L16.1604,9.8675 C15.7384,9.5795 15.2294,9.4105 14.6794,9.4105 C13.2254,9.4105 12.0454,10.5895 12.0454,12.0435 C12.0454,13.4985 13.2254,14.6775 14.6794,14.6775 C15.2294,14.6775 15.7384,14.5085 16.1604,14.2205 L16.1604,14.5395 L17.6554,14.5395 L17.6554,9.5485 L16.1604,9.5485 Z" fill="rgba(23, 23, 23, 1)"></path><path d="M19.9665,10.1986 L19.9665,9.5486 L18.4365,9.5486 L18.4365,14.5396 L19.9695,14.5396 L19.9695,12.2096 C19.9695,11.4236 20.8215,11.0006 21.4125,11.0006 L21.4315,11.0006 L21.4315,9.5486 C20.8235,9.5486 20.2665,9.8076 19.9665,10.1986" fill="rgba(23, 23, 23, 1)"></path><path d="M35.0055,12.7689 C34.4875,12.7689 34.0685,13.1889 34.0685,13.7059 C34.0685,14.2249 34.4875,14.6449 35.0055,14.6449 C35.5235,14.6449 35.9425,14.2249 35.9425,13.7059 C35.9425,13.1889 35.5235,12.7689 35.0055,12.7689" fill="rgba(23, 23, 23, 1)"></path></svg>
+                <p>Pay in 3 installments of <span class="afterpayKlarna"></span></p>
+              </div>
+<!--               <div class="item-checkout-product">
+                <img loading="lazy" src="{{ 'checkout-img-2.png' | asset_url }}" alt="" class="img-left-product-checkout img-left-product-checkout__new"> 
+                <p>Pay in 4 installments of <span class="afterpayPay"></span></p>
+              </div> -->
+            </div>
+            <input type="hidden" class="upsell_common" value ="{{product.selected_or_first_available_variant.id }}">
+          </form>
+          <div class="description-product-cart">
+            <p>Hear the <strong>depth</strong> and <strong>detail</strong> you've been missing. Trua Pro earbuds offer <strong>Active Noise Cancellation, Waterproof capabilities</strong> and up to <strong>7 hours of continuous music</strong> all with true wireless freedom.</p>
+          </div>
+          
+          <div class="kaching-icon-block desktop_show" data-block-id="26f65743-af63-4713-964a-a82c38634eff">
+            <div id="kaching-icon-block-26f65743-af63-4713-964a-a82c38634eff" class="kaching-icon-block--container" style="display: flex; flex: 0 1 0%; width: 100%; justify-content: center; position: relative; line-height: 1.5; word-break: break-word; background-color: rgb(255, 255, 255); margin-top: 0px; margin-bottom: 10px; padding-top: 0px; padding-bottom: 10px;">
+              <style>
+                .kaching-icon-block--link:hover { 
+                  opacity: 0.8; 
+                }
+                #kaching-icon-block-26f65743-af63-4713-964a-a82c38634eff .kaching-icon-block--icon-container {
+                  flex-basis: 100%;
+                }
+                @media screen and (max-width: 500px) {
+                  #kaching-icon-block-26f65743-af63-4713-964a-a82c38634eff .kaching-icon-block--icon-container {
+                    flex-basis: 100%;
+                  }
+                }#kaching-icon-block-26f65743-af63-4713-964a-a82c38634eff .kaching-icon-block--icon svg {
+                  height: 100%;
+                  width: 100%;
+                }#kaching-icon-block-26f65743-af63-4713-964a-a82c38634eff .kaching-icon-block--icon g {
+                  clip-path: none;
+                }
+              </style>
+              <div class="kaching-icon-block--wrapper" style="display: flex; flex: 1 1 0%; justify-content: space-between; flex-wrap: wrap; max-width: 1000px;">
+                <div class="kaching-icon-block--icon-container" style="display: flex; flex-grow: 1; flex-shrink: 0; justify-content: center;">
+                  <div class="kaching-icon-block--icon" style="display: flex; flex-direction: row; flex: 1 1 0%; align-items: center; text-align: center; padding: 10px;">
+                    <div style="display: flex; flex-shrink: 0; align-items: center; height: 50px; width: 50px; fill: rgb(0, 0, 0); margin-bottom: 0px;">
+                      <img src="https://d2kmd27hg6le17.cloudfront.net/storefront_api/icons/c1760d5a-086f-4e21-b2db-71baf0260ca4?color=rgba(0,%200,%200,%201)" alt="Ordered before 23:59 = Processed Immediately" style="height: 100%; width: 100%; object-fit: contain; display: inline-block; border-radius: 0px;">
+                    </div>
+                    <div style="display: flex; flex-direction: column; text-align: left; margin-left: 10px;">
+                      <span class="kaching-icon-block--icon-title" style="font-size: 16px; color: rgb(0, 0, 0); font-style: normal; font-weight: bold;">
+                        Ordered before 23:59 = Processed Immediately
+                      </span>
+                      <span class="kaching-icon-block--icon-subtitle" style="font-size: 12px; color: rgb(0, 0, 0); font-style: normal; font-weight: normal;">
+                        Enjoy Free 5-7 Day Shipping Wolrdwide.
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="kaching-icon-block--icon-container" style="display: flex; flex-grow: 1; flex-shrink: 0; justify-content: center;">
+                  <div class="kaching-icon-block--icon" style="display: flex; flex-direction: row; flex: 1 1 0%; align-items: center; text-align: center; padding: 10px;">
+                    <div style="display: flex; flex-shrink: 0; align-items: center; height: 50px; width: 50px; fill: rgb(0, 0, 0); margin-bottom: 0px;">
+                      <img src="https://d2kmd27hg6le17.cloudfront.net/storefront_api/icons/001d7ccd-7e6b-4097-bdc0-4d7cb9cc6099?color=rgba(0,%200,%200,%201)" alt="Trusted by 1000s" style="height: 100%; width: 100%; object-fit: contain; display: inline-block; border-radius: 0px;">
+                    </div>
+                    <div style="display: flex; flex-direction: column; text-align: left; margin-left: 10px;">
+                      <span class="kaching-icon-block--icon-title" style="font-size: 16px; color: rgb(0, 0, 0); font-style: normal; font-weight: bold;">
+                        Trusted by 1000s
+                      </span>
+                      <span class="kaching-icon-block--icon-subtitle" style="font-size: 12px; color: rgb(0, 0, 0); font-style: normal; font-weight: normal;">
+                        Join our growing community trusted by 1000’s of happy customers.
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="kaching-icon-block--icon-container" style="display: flex; flex-grow: 1; flex-shrink: 0; justify-content: center;">
+                  <div class="kaching-icon-block--icon" style="display: flex; flex-direction: row; flex: 1 1 0%; align-items: center; text-align: center; padding: 10px;">
+                    <div style="display: flex; flex-shrink: 0; align-items: center; height: 50px; width: 50px; fill: rgb(0, 0, 0); margin-bottom: 0px;">
+                      <img src="https://d2kmd27hg6le17.cloudfront.net/storefront_api/icons/e6b91ec2-d528-422e-9f70-2d316f1195a8?color=rgba(0,%200,%200,%201)" alt=" 50% OFF for a Limited Time Only" style="height: 100%; width: 100%; object-fit: contain; display: inline-block; border-radius: 0px;">
+                    </div>
+                    <div style="display: flex; flex-direction: column; text-align: left; margin-left: 10px;">
+                      <span class="kaching-icon-block--icon-title" style="font-size: 16px; color: rgb(0, 0, 0); font-style: normal; font-weight: bold;"> 
+                        50% OFF for a Limited Time Only
+                      </span>
+                      <span class="kaching-icon-block--icon-subtitle" style="font-size: 12px; color: rgb(0, 0, 0); font-style: normal; font-weight: normal;">
+                        Get more for less.
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="kaching-icon-block--icon-container" style="display: flex; flex-grow: 1; flex-shrink: 0; justify-content: center;">
+                  <div class="kaching-icon-block--icon" style="display: flex; flex-direction: row; flex: 1 1 0%; align-items: center; text-align: center; padding: 10px;">
+                    <div style="display: flex; flex-shrink: 0; align-items: center; height: 50px; width: 50px; fill: rgb(0, 0, 0); margin-bottom: 0px;">
+                      <img src="https://d2kmd27hg6le17.cloudfront.net/storefront_api/icons/9a30d89c-72ca-4b8c-9dfe-8106cd09ee02?color=rgba(0,%200,%200,%201)" alt="2-Year Damage Warranty" style="height: 100%; width: 100%; object-fit: contain; display: inline-block; border-radius: 0px;">
+                    </div>
+                    <div style="display: flex; flex-direction: column; text-align: left; margin-left: 10px;">
+                      <span class="kaching-icon-block--icon-title" style="font-size: 16px; color: rgb(0, 0, 0); font-style: normal; font-weight: bold;">
+                        2-Year Damage Warranty
+                      </span>
+                      <span class="kaching-icon-block--icon-subtitle" style="font-size: 12px; color: rgb(0, 0, 0); font-style: normal; font-weight: normal;">
+                        Get a free replacement if damaged. 
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="container mobile_show">
+            <div class="row-product-description">
+              <div class="img-product-description"><img loading="lazy" src="{{ 'save.svg' | asset_url }}" alt=""><p>Ordered before 23:59 = Processed Immediately</p></div>
+              <div class="img-product-description"><img loading="lazy" src="{{ 'star.svg' | asset_url }}" alt=""><p>Trusted by 1000s</p></div>
+              <div class="img-product-description"><img loading="lazy" src="{{ 'discount.svg' | asset_url }}" alt=""><p> 50% OFF for a <br> Limited Time Only</p></div>
+              <div class="img-product-description"><img loading="lazy" src="{{ 'lock.svg' | asset_url }}" alt=""><p>2-Year Damage<br>Warranty</p></div>
+            </div>
+          </div>         
+          <section id="icon_above_featured_image" class="mobile_show">
+            <div class="main_featured_image">
+              <div class="featured_title">
+                <!--                 <span>FEATURED IN</span> -->
+              </div>
+              <div class="featured_image">
+                <div class="featured_image_item-info">
+                  <img loading="lazy" src="{{ 'award.png' | asset_url }}" alt="">
+                </div>
+                <div class="featured_image_item-info">
+                  <img loading="lazy" src="{{ 'design_award.png' | asset_url }}" alt="">
+                </div>
+                <div class="featured_image_item-info">
+                  <img loading="lazy" src="{{ 'ispo_award.png' | asset_url }}" alt="">
+                </div>
+                <div class="featured_image_item-info">
+                  <img loading="lazy" src="{{ 'reddot_award.png' | asset_url }}" alt="">
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>       
+      </div>
+    </div>
+  </div>
+</section>
+<!-- <section id="icon_above_featured_image" class="mobile_show">
+  <div class="main_featured_image">
+    <div class="featured_title">
+      <span>FEATURED IN</span>
+    </div>
+    <div class="featured_image">
+      <div class="featured_image_item-info">
+        <img loading="lazy" src="{{ 'featued_1.png' | asset_url }}" alt="">
+      </div>
+      <div class="featured_image_item-info">
+        <img loading="lazy" src="{{ 'featued_2.png' | asset_url }}" alt="">
+      </div>
+      <div class="featured_image_item-info">
+        <img loading="lazy" src="{{ 'featued_3.png' | asset_url }}" alt="">
+      </div>
+      <div class="featured_image_item-info">
+        <img loading="lazy" src="{{ 'featued_4.png' | asset_url }}" alt="">
+      </div>
+    </div>
+  </div>
+</section> -->
+<section id="icon_above_featured_image" class="desktop_show">
+  <div class="main_featured_image">
+    <div class="featured_title">
+<!--       <span>FEATURED IN</span> -->
+    </div>
+    <div class="featured_image">
+      <div class="featured_image_item-info">
+        <img loading="lazy" src="{{ 'award.png' | asset_url }}" alt="">
+      </div>
+      <div class="featured_image_item-info">
+        <img loading="lazy" src="{{ 'design_award.png' | asset_url }}" alt="">
+      </div>
+      <div class="featured_image_item-info">
+        <img loading="lazy" src="{{ 'ispo_award.png' | asset_url }}" alt="">
+      </div>
+      <div class="featured_image_item-info">
+        <img loading="lazy" src="{{ 'reddot_award.png' | asset_url }}" alt="">
+      </div>
+    </div>
+  </div>
+</section>
+<section id="section-info-product" class="add_margin section-info-product_marginbottom  plus_power">
+  <div class="container"> 
+      <div class="featured_title add_align_center">
+        <h2>Technical Specifications</h2>
+        <p>A look at the finer details.</p>
+      </div>
+      <div class="items-info-product">
+        <div class="item-info-product">
+          <img loading="lazy" src="{{ 'mic_add.svg' | asset_url }}" alt="">
+          <h6>Hi-FI Voice Calls</h6>
+        </div>
+        <div class="item-info-product">
+          <img loading="lazy" src="{{ 'battery.svg' | asset_url }}" alt="">
+          <h6>Long Battery Life</h6>          
+        </div>
+        <div class="item-info-product">
+          <img loading="lazy" src="{{ 'growth.svg' | asset_url }}" alt="">
+          <h6>Advanced Specifications</h6>          
+        </div>      
+      </div>      
+  </div> 
+</section>
+<section id="section-info-colors">
+  <div class="container">
+    <div class="row">      
+      <div class="col-lg-10 mx-auto col-section-info-colors">
+        <div class="featured_title add_align_center">
+          <h2>Up Close & Personal</h2>
+          <p>Get up close and personal with Trua</p>
+        </div>
+        <div class="item-image-info-color show-mobile">           
+          <img loading="lazy" src="{{ 'airpodes_with_case-removebg-preview.png' | asset_url }}" alt="" class="img-item-center-info-color img-item-center-info-color2" id="img-item-center-info-color1">
+          <img loading="lazy" src="{{ 'airpodes_with_case-removebg-preview.png' | asset_url }}" alt="" class="img-item-center-info-color img-item-center-info-color2" style="display:none" id="img-item-center-info-color2"> 
+        </div>
+        <div class="items-content-info-color">
+          <div class="item-content-info-color" id="item-info-color1">
+            <div class="item-left-info-color">
+              <div class="item-int-info-color">
+                <div class="icon-inner left">{% render 'heart_rate' %}</div>
+                <h3 class="title-item-int-info-color">Active Noise Cancellation</h3>
+                <div class="box-text-item-int-info-color">
+                  <p>Our Active Noise Cancellation uses&nbsp;<strong>microphones and speakers to reduce background and surrounding noises</strong>.</p>
+                </div>
+              </div>
+              <div class="item-int-info-color"> 
+                <div class="icon-inner left">{% render 'settings' %}</div>
+                <h3 class="title-item-int-info-color">Smart Sound Adaptation</h3>
+                <div class="box-text-item-int-info-color">
+                  <p>Suitable to all genres of music, types of sounds. Our technology adapts to what your listening to so that you're always hearing right.</p>
+                </div>
+              </div>
+            </div>
+            <div class="item-center-info-color">
+              <img loading="lazy" src="{{ 'airpodes_with_case-removebg-preview.png' | asset_url }}" alt="" class="img-item-center-info-color">
+            </div>
+            <div class="item-left-info-color">
+              <div class="item-int-info-color">
+                 <div class="icon-inner right">{% render 'heart' %}</div>
+                <h3 class="title-item-int-info-color">Extreme Durability</h3>
+                <div class="box-text-item-int-info-color">
+                  <p>Our headphones are designed to be pushed past their limits. Created with the strongest materials to withstand the toughest terrains.</p>
+                </div>                               
+              </div>
+              <div class="item-int-info-color">
+                <div class="icon-inner right">{% render 'drop' %}</div>
+                <h3 class="title-item-int-info-color">IPX7 Sweat & Waterproof</h3>
+                <div class="box-text-item-int-info-color">
+                  <p>We aimed to keep you listening no matter the weather so our IPX7 Waterproof rating enables you to get through the toughest workout in any weather.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="item-content-info-color" style="display: none;" id="item-info-color2">
+            <div class="item-left-info-color">
+              <div class="item-int-info-color">
+                <h3 class="title-item-int-info-color">Miniaturized Performance</h3>
+                <div class="box-text-item-int-info-color">
+                  <p>Experience the same quality of treatment for muscle relief, performance, and recovery in a smaller, portable device.</p>
+                </div>
+              </div>
+              <div class="item-int-info-color">
+                <h3 class="title-item-int-info-color">Functional, Ergonomic Design</h3>
+                <div class="box-text-item-int-info-color">
+                  <p>Combat muscle and joint pain after every workout with Physion Pro's advanced percussive therapy.</p>
+                </div>
+              </div>
+            </div>
+            <div class="item-center-info-color">
+              <img loading="lazy" src="{{ 'White-Mini-Angle01.png' | asset_url }}" alt="" class="img-item-center-info-color">
+            </div>
+            <div class="item-left-info-color">
+              <div class="item-int-info-color">
+                <h3 class="title-item-int-info-color">Lightweight and Practical</h3>
+                <div class="box-text-item-int-info-color">
+                  <p>Convenient, lightweight and portable for on-the-go muscle relief. A powerful treatment wrapped up in a miniature device.</p>
+                </div>
+              </div>
+              <div class="item-int-info-color">
+                <h3 class="title-item-int-info-color">Deeper, Faster, More Precise</h3>
+                <div class="box-text-item-int-info-color">
+                  <p>Address any level of pain or discomfort with 4 speed levels to choose from, topping out at 2500 strokes/minutes.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="caracteristicas-product">
+  <div class="container">
+    <div class="col-lg-5 col-left-caracteristicas-product">
+      <div class="swiper-container show-mobile" id="physion-carousel1">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <div class="card-caracteristicas-product">
+              <h6 class="subtitle-caracteristicas-product">01</h6>
+              <h3 class="title-caracteristicas-product">Introducing Trua Smart Sound®</h3>
+              <div class="box-text-caracteristicas-product">
+                <p><span style="color: rgb(255, 255, 255);">Providing the <span style="font-weight: bold; font-style: italic;">best audio solution for any device</span>, Trua Pro® earbuds are <span style="font-weight: bold;">small but powerful</span>, with 11mm dynamic drivers for extraordinary<span style="font-weight: bold;"> Smart Sound all day, every day.</span></span></p>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="card-caracteristicas-product">
+              <h6 class="subtitle-caracteristicas-product">02</h6>
+              <h3 class="title-caracteristicas-product">Adaptive Noise Cancelling</h3>
+              <div class="box-text-caracteristicas-product">
+                <p><span style="color: rgb(255, 255, 255);">Adaptive Noise Cancelling means <span style="font-weight: bold; font-style: italic;">zero distractions </span>when it's time to focus on your studies or get your groove on. And if you want to hear the world around you without removing your headphones, <span style="font-weight: bold;">Smart Ambient sharpens the sounds of your surroundings.</span></span></p>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="card-caracteristicas-product">
+              <h6 class="subtitle-caracteristicas-product">03</h6>
+              <h3 class="title-caracteristicas-product">30-Hour Trua Usage</h3>
+              <div class="box-text-caracteristicas-product">
+                <p><span style="color: rgb(255, 255, 255);">Up to <span style="font-weight: bold; font-style: italic;">30 hours of battery life</span>, wirelessly charged and up to 7 hours of playback plus 21 in the case and <span style="font-weight: bold;">Trua Pro Super Speed Charge</span> means your audio stays with you all day long. Power up super easily on the go with Trua Pro® Super Speed Charging capabilities.</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+      <div class="list-card-caracteristicas-product show-desktop">
+        <div class="card-caracteristicas-product active" id="card-caracteristicas-product1">
+          <h6 class="subtitle-caracteristicas-product">01</h6>
+          <h3 class="title-caracteristicas-product">Introducing Trua Smart Sound®</h3>
+          <div class="box-text-caracteristicas-product">
+             <p><span style="color: rgb(255, 255, 255);">Providing the <span style="font-weight: bold; font-style: italic;">best audio solution for any device</span>, Trua Pro® earbuds are <span style="font-weight: bold;">small but powerful</span>, with 11mm dynamic drivers for extraordinary<span style="font-weight: bold;"> Smart Sound all day, every day.</span></span></p>
+          </div>
+        </div>
+        <div class="card-caracteristicas-product" id="card-caracteristicas-product2">
+          <h6 class="subtitle-caracteristicas-product">02</h6>
+          <h3 class="title-caracteristicas-product">Adaptive Noise Cancelling</h3>
+          <div class="box-text-caracteristicas-product">
+            <p><span style="color: rgb(255, 255, 255);">Adaptive Noise Cancelling means <span style="font-weight: bold; font-style: italic;">zero distractions </span>when it's time to focus on your studies or get your groove on. And if you want to hear the world around you without removing your headphones, <span style="font-weight: bold;">Smart Ambient sharpens the sounds of your surroundings.</span></span></p>
+          </div>
+        </div>
+        <div class="card-caracteristicas-product" id="card-caracteristicas-product3">
+          <h6 class="subtitle-caracteristicas-product">03</h6>
+          <h3 class="title-caracteristicas-product">30-Hour Trua Usagee</h3>
+          <div class="box-text-caracteristicas-product">
+            <p><span style="color: rgb(255, 255, 255);">Up to <span style="font-weight: bold; font-style: italic;">30 hours of battery life</span>, wirelessly charged and up to 7 hours of playback plus 21 in the case and <span style="font-weight: bold;">Trua Pro Super Speed Charge</span> means your audio stays with you all day long. Power up super easily on the go with Trua Pro® Super Speed Charging capabilities.</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="box-caracteristicas-product-img">
+    <div class="img-caracteristicas-product" id="caracteristica-product1">
+      <img loading="lazy" src="{{ 'add_noise-removebg-preview.png' | asset_url }}" alt="">
+    </div>
+    <div class="img-caracteristicas-product" id="caracteristica-product2">
+      <img loading="lazy" src="{{ 'noise-removebg-preview.png' | asset_url }}" alt="">
+    </div>
+    <div class="img-caracteristicas-product" id="caracteristica-product3">
+      <img loading="lazy" src="{{ 'airpod-removebg-preview.png' | asset_url }}" alt="">
+    </div>
+  </div>
+</section>
+<section class="section-pro-text">
+  <div class="container">
+    <div class="row section-pro-text_row">
+      <div class="col-lg-12 mx-auto">
+        <span class="recently_text">We recently upgraded our logo and colour scheme. The reviews shown below are of the same product.</span>
+      </div>
+    </div>
+  </div>
+</section>
+<div id="looxReviews" data-product-id="{{product.id}}" class="loox-reviews-default">{{ product.metafields.loox.reviews }}</div>
+<script type="text/javascript">
+  var _learnq = _learnq || [];
+  var item = {
+    Name: {{ product.title|json }},
+    ProductID: {{ product.id|json }},
+    Categories: {{ product.collections|map:'title'|json }},
+    ImageURL: "https:{{ product.featured_image.src|img_url:'grande' }}",
+    URL: "{{ shop.secure_url }}{{ product.url }}",
+    Brand: {{ product.vendor|json }},
+    Price: {{ product.price|money|json }},
+    CompareAtPrice: {{ product.compare_at_price_max|money|json }}
+  };
+  _learnq.push(['track', 'Viewed Product', item]);
+  _learnq.push(['trackViewedItem', {
+    Title: item.Name,
+    ItemId: item.ProductID,
+    Categories: item.Categories,
+    ImageUrl: item.ImageURL,
+    Url: item.URL,
+    Metadata: {
+      Brand: item.Brand,
+      Price: item.Price,
+      CompareAtPrice: item.CompareAtPrice
+    }
+  }]);
+</script>
+<img loading="lazy" src="{{ 'img-before-footer-custom1.jpg' | asset_url }}" alt="" class="img-fluid">
+<div data-marquee-speed="500" class=" js-marquee marquee-free-mode">
+  <ul class="marquee__track">
+    <li>
+      <div class="box-text-marquee">
+        <p>Fast Shipping</p>
+      </div>
+    </li>
+    <li>
+      <div class="box-text-marquee">
+        <p>1-YEAR WARRANTY</p>
+      </div>
+    </li>
+    <li>
+      <div class="box-text-marquee">
+        <p>24/7 Support</p>
+      </div>
+    </li>
+    <li>
+      <div class="box-text-marquee">
+        <p>Flexible Returns</p>
+      </div>
+    </li>
+    <li>
+      <div class="box-text-marquee">
+        <p>Fast Shipping</p>
+      </div>
+    </li>
+    <li>
+      <div class="box-text-marquee">
+        <p>1-YEAR WARRANTY</p>
+      </div>
+    </li>
+    <li>
+      <div class="box-text-marquee">
+        <p>24/7 Support</p>
+      </div>
+    </li>
+    <li>
+      <div class="box-text-marquee">
+        <p>Flexible Returns</p>
+      </div>
+    </li>
+  </ul>
+</div>
+<div class="modal-video">
+  <div class="overlay-modal-video"></div>
+  <div class="content-modal-video">
+    <button class="btn-close-modal-video"><span></span><span></span></button>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/xf6wfC-YaGQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+</div>
+</div>

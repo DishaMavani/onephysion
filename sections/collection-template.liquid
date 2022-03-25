@@ -1,0 +1,568 @@
+<section class="collections-page-custom1">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 mx-auto">
+        <div class="box-title-collection-page-custom1">
+          <h2 class="title-collection-page-custom1">The next generation in tech and fitness.</h2>
+        </div>
+        {% if collection.title == 'ACCESSORIES' or collection.title == "ACTIVEWEAR"%}
+        <div class="items-muscles items-muscles-custom1">
+          {% for product in collection.products %}
+          <div class="item-muscles">
+            <div class="box-img-item-muscles">
+              {% if product.metafields.loox.avg_rating %}
+              <div class="rating-car-product rating-car-product-item-muscles show-desktop">
+                <a href="#looxReviews" class="link-scroll"><div class="loox-rating" data-id="{{ product.id }}" data-rating="{{ product.metafields.loox.avg_rating }}" data-raters="{{ product.metafields.loox.num_reviews }}"   data-pattern="[count] Reviews"></div></a>
+              </div>
+               <div class="rating-car-product rating-car-product-item-muscles show-mobile">
+                <a href="#looxReviews" class="link-scroll"><div class="loox-rating" data-id="{{ product.id }}" data-rating="{{ product.metafields.loox.avg_rating }}" data-raters="{{ product.metafields.loox.num_reviews }}"   data-pattern="[count] Reviews"></div></a>
+              </div>
+              {% endif %}
+              {% comment %}
+              {% if product.compare_at_price > 0.0 %}
+              <span class="percentage-item-muscles {% if product.metafields.loox.avg_rating %} percentage-item-muscles-has-rating {% endif %}" data-compare="{{ product.compare_at_price| money_without_currency }}" data-price="{{ product.price| money_without_currency }}"></span>
+              {% endif %}
+              {% endcomment %}
+              {% assign featured_image = current_variant.featured_image | default: product.featured_image %}
+              <a href="{{ product.url }}"><img loading="lazy" class="img-item-muscles" id="img-item-muscles" src="{{ featured_image | img_url: 'grande' }}" {% if settings.product_zoom_enable %}data-mfp-src="{{ featured_image | img_url: '1024x1024' }}"{% endif %} alt="{{ featured_image.alt | escape }}" data-image-id="{{ featured_image.id }}"></a>
+            </div>
+            <div class="box-content-item-muscles">
+              <h3 class="title-item-muscles"><a href="{{ product.url }}">{{ product.title }}</a></h3>
+              <p class="p-product-price">From £ {{product.price | money_without_currency}} {% if product.compare_at_price > product.price %}<span class="compare-price">£ {{product.compare_at_price | money_without_currency}}</span>{% endif %}</p>
+              <!-- <div class="box-text-item-muscles">
+              <p>Elevate your fitness with comfort.</p>
+              </div> -->
+                            <!-- <div class="items-variants items-variants-yoga">
+              <div class="item-radio-custom1">
+              <input type="radio" name="color1" id="white1" value="white" />
+              <label for="white1"><span class="white" style="background: linear-gradient(153.43deg, #FFFFFF 0%, #E6E6E6 83.33%);"></span></label>
+              </div>
+              <div class="item-radio-custom1">
+              <input type="radio" name="color1" id="black1" value="black" />
+              <label for="black1"><span class="black" style="background: linear-gradient(141.34deg, #000000 20.83%, #575757 77.78%);"></span></label>
+              </div>
+			  </div> -->
+              {% comment %}
+              {% if product.compare_at_price > 0.0 %}
+              <div class="on-sale-content-product-card on-sale-content-product-card-mobile">
+                <span>On Sale - Previously {{product.compare_at_price | money}}</span>
+              </div>
+              {% endif %}
+              {% endcomment %}
+              {% comment %}
+              <a href="{{ product.url }}" class="btn-design3">SHOP NOW - {{product.price | money}} {% if product.compare_at_price > 0.0 %}{{ product.compare_at_price| money }}{% endif %}</a>
+              {% endcomment %}
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        {% endif %}
+        {% if collection.title == 'TECH' %}
+        <div class="row">
+          {% for product in collection.products %}
+          {% if product.id == 6643371376826 %}
+          <div class="col-lg-6 animate-section add_four_part">
+            <form action="" id="form_product" name="form_product" data-productid="{{ product.id }}" method="POST" data-productid="{{ product.id }}">
+              <input type="hidden" name="quantity" value="1">
+              <input type="hidden" name="id" data-productid="{{ product.selected_or_first_available_variant.id }}" data-productid="{{ product.selected_or_first_available_variant.id }}" value="{{ product.selected_or_first_available_variant.id }}">
+              <div class="card-product-custom">
+<!--                 <a href="{{ product.url }}"><img loading="lazy" src="{{ 'img-bg-product-mini.jpg' | asset_url }}" alt="" class="bg-card-product-custom"></a> -->
+                <div class="bg-gradient-product-custom"></div>
+                <div class="rating-car-product show-desktop">
+                  <a href="#looxReviews" class="link-scroll"><div class="loox-rating" data-id="{{ product.id }}" data-rating="{{ product.metafields.loox.avg_rating }}" data-raters="{{ product.metafields.loox.num_reviews }}"   data-pattern="[count] Reviews"></div></a>
+                </div>
+                <div class="rating-car-product show-mobile">
+                  <a href="#looxReviews" class="link-scroll"><div class="loox-rating" data-id="{{ product.id }}" data-rating="{{ product.metafields.loox.avg_rating }}" data-raters="{{ product.metafields.loox.num_reviews }}"   data-pattern="[count] Reviews"></div></a>
+                </div>
+                {% comment %}
+                <div class="tag-card-product btn-design2">
+                  <h3 class="tag-text-product">
+                    New
+                  </h3>
+                </div>
+                <span class="percentage-item-muscles" data-compare="{{ product.compare_at_price| money_without_currency }}" data-price="{{ product.price| money_without_currency }}"></span>
+                {% endcomment %}
+                {% assign featured_image = current_variant.featured_image | default: product.featured_image %}
+                <a href="{{ product.url }}" class="d-block w-100 text-center">
+                  <img loading="lazy" class="img-product-custom" id="img-product-custom" src="{{ featured_image | img_url: 'grande' }}" {% if settings.product_zoom_enable %}data-mfp-src="{{ featured_image | img_url: '1024x1024' }}"{% endif %} alt="{{ featured_image.alt | escape }}" data-image-id="{{ featured_image.id }}">
+                </a>
+                <div class="content-product-card show-desktop">
+                  {% comment %}
+                  <div class="on-sale-content-product-card">
+                    <span>On Sale - Previously {{product.compare_at_price | money}}</span>
+                  </div>
+                  {% endcomment %}
+                  <h3 class="title-product-card animate-section-text animate-section-text2" data-aos-delay="50">
+                    <a href="{{ product.url }}">{{ product.title }}</a>
+                  </h3>
+                  <p class="p-product-price">From £ {{product.price | money_without_currency}} {% if product.compare_at_price > product.price %}<span class="compare-price">£ {{product.compare_at_price | money_without_currency}}</span>{% endif %}</p>
+                  {% comment %}
+                  <div class="box-text-product-card">
+                    <a href="{{ product.url }}"><p>The perfect balance of size, power, and quality. Muscle relief and recovery becomes a quick and convenient habit with our pocket-sized percussive device. </p></a>
+                  </div>
+                  <div class="content-button-product">
+                    <button class="btn-design1 btn-product-1" type="submit">Add to Cart –  £ {{product.price | money_without_currency}}</button>
+                  </div>
+                  {% endcomment %}
+                </div>
+              </div>
+              <div class="content-product-card show-mobile">
+                
+                <h3 class="title-product-card animate-section-text animate-section-text2" data-aos-delay="50">
+                  <a href="{{ product.url }}">{{ product.title }}</a>
+                </h3>
+                <p class="p-product-price">From £ {{product.price | money_without_currency}} {% if product.compare_at_price > product.price %}<span class="compare-price">£ {{product.compare_at_price | money_without_currency}}</span>{% endif %}</p>
+                {% comment %}
+                <div class="box-text-product-card">
+                  <a href="{{ product.url }}"><p>Experience unmatched, calibrated doses of speed, depth, and precision to target muscle tissue 15mm deep at 30 skin contacts per second.</p></a>
+                </div>
+                {% endcomment %}
+                {% comment %}
+                <div class="content-button-product btn-design1 btn-product-1">
+                  <div class="on-sale-content-product-card">
+                    <span>On Sale - Previously {{product.compare_at_price | money}}</span>
+                  </div>
+                  <button class="btn-design1 btn-product-1" type="submit">Add to Cart –  £ {{product.price | money_without_currency}}</button>
+                </div>
+                {% endcomment %}
+              </div>
+            </form>
+          </div>
+          {% endif %}
+          {% if product.id == 4465771708551 %}
+          <div class="col-lg-6 animate-section add_four_part">
+            <form action="" id="form_product2" name="form_product2" data-productid="{{ product.id }}" method="POST" data-productid="{{ product.id }}">
+              <input type="hidden" name="quantity" value="1">
+              <input type="hidden" name="id" data-productid="{{ product.id }}" data-productid="{{ product.selected_or_first_available_variant.id }}" value="{{ product.selected_or_first_available_variant.id }}">
+              <div class="card-product-custom">
+<!--                 <a href="{{ product.url }}">
+                  <img loading="lazy" src="{{ 'img-product3.jpg' | asset_url }}" alt="" class="bg-card-product-custom">
+                </a> -->
+                <a href="{{ product.url }}" class="bg-gradient-product-custom"></a>
+                <div class="rating-car-product show-desktop">
+                  <a href="#looxReviews" class="link-scroll"><div class="loox-rating" data-id="{{ product.id }}" data-rating="{{ product.metafields.loox.avg_rating }}" data-raters="{{ product.metafields.loox.num_reviews }}"   data-pattern="[count] Reviews"></div></a>
+                </div>
+                 <div class="rating-car-product show-mobile">
+                  <a href="#looxReviews" class="link-scroll"><div class="loox-rating" data-id="{{ product.id }}" data-rating="{{ product.metafields.loox.avg_rating }}" data-raters="{{ product.metafields.loox.num_reviews }}"   data-pattern="[count] Reviews"></div></a>
+                </div>
+                {% comment %}
+                <div class="tag-card-product btn-design2">
+                  <h3 class="tag-text-product">
+                    Best Seller
+                  </h3>
+                </div>
+                <span class="percentage-item-muscles" data-compare="{{ product.compare_at_price| money_without_currency }}" data-price="{{ product.price| money_without_currency }}"></span>
+                {% endcomment %}
+                {% assign featured_image = current_variant.featured_image | default: product.featured_image %}
+                <a href="{{ product.url }}" class="d-block w-100 text-center"><img loading="lazy" class="img-product-custom" id="img-product-custom" src="{{ featured_image | img_url: 'grande' }}" {% if settings.product_zoom_enable %}data-mfp-src="{{ featured_image | img_url: '1024x1024' }}"{% endif %} alt="{{ featured_image.alt | escape }}" data-image-id="{{ featured_image.id }}"></a>
+                <div class="content-product-card show-desktop">
+                  {% comment %}
+                  <div class="on-sale-content-product-card">
+                    <span>On Sale - Previously {{product.compare_at_price | money}}</span>
+                  </div>
+                  {% endcomment %}
+                  <h3 class="title-product-card animate-section-text animate-section-text2" data-aos-delay="50">
+                    <a href="{{ product.url }}">{{ product.title }}</a>
+                  </h3>
+                  <p class="p-product-price">From £ {{product.price | money_without_currency}} {% if product.compare_at_price > product.price %}<span class="compare-price">£ {{product.compare_at_price | money_without_currency}}</span>{% endif %}</p>
+                  {% comment %}
+                  <div class="box-text-product-card">
+                    <a href="{{ product.url }}"><p>Experience unmatched, calibrated doses of speed, depth, and precision to target muscle tissue 15mm deep at 30 skin contacts per second.</p></a>
+                  </div>
+                  <div class="content-button-product">
+                    <button class="btn-design1 btn-product-1" type="submit">Add to Cart – £ {{product.price | money_without_currency}}</button>
+                  </div>
+                  {% endcomment %}
+                </div>
+              </div>
+              <div class="content-product-card show-mobile">
+                <h3 class="title-product-card animate-section-text animate-section-text2" data-aos-delay="50">
+                  <a href="{{ product.url }}">{{ product.title }}</a>
+                </h3>
+                <p class="p-product-price">From £ {{product.price | money_without_currency}} {% if product.compare_at_price > product.price %}<span class="compare-price">£ {{product.compare_at_price | money_without_currency}}</span>{% endif %}</p>
+                {% comment %}
+                <div class="box-text-product-card">
+                  <a href="{{ product.url }}"><p>Experience unmatched, calibrated doses of speed, depth, and precision to target muscle tissue 15mm deep at 30 skin contacts per second.</p></a>
+                </div>
+                {% endcomment %}
+                <div class="content-button-product btn-design1 btn-product-1">
+                  {% comment %}
+                  <div class="on-sale-content-product-card">
+                    <span>On Sale - Previously {{product.compare_at_price | money}}</span>
+                  </div>
+                  <button class="btn-design1 btn-product-1" type="submit">Add to Cart – £ {{product.price | money_without_currency}}</button>
+                  {% endcomment %}
+                </div>
+              </div>
+            </form>
+          </div>
+          {% endif %}
+          {% if product.id == 7027991118010 or product.id == 7027254886586 %}
+          <div class="col-lg-6 animate-section add_four_part">
+            <form action="/cart/add" id="form_product" name="form_product" data-productid="{{ product.id }}" method="POST" data-productid="{{ product.id }}">
+              <input type="hidden" name="quantity" value="1">
+              <input type="hidden" name="id" data-productid="{{ product.id }}" data-productid="{{ product.selected_or_first_available_variant.id }}" value="{{ product.selected_or_first_available_variant.id }}">
+              <div class="card-product-custom">
+<!--                 <a href="{{ product.url }}">
+                  <img loading="lazy" src="{{ 'img-product3.jpg' | asset_url }}" alt="" class="bg-card-product-custom">
+                </a> -->
+                <a href="{{ product.url }}" class="bg-gradient-product-custom"></a>
+                {% if product.metafields.loox.avg_rating != blank %}
+                <div class="rating-car-product show-desktop">
+                  <a href="#looxReviews" class="link-scroll">
+                    <div class="loox-rating" data-id="{{ product.id }}" data-rating="{{ product.metafields.loox.avg_rating }}" data-raters="{{ product.metafields.loox.num_reviews }}"   data-pattern="[count] Reviews">
+                    </div>
+                  </a>
+                </div>
+                <div class="rating-car-product show-mobile">
+                  <a href="#looxReviews" class="link-scroll"><div class="loox-rating" data-id="{{ product.id }}" data-rating="{{ product.metafields.loox.avg_rating }}" data-raters="{{ product.metafields.loox.num_reviews }}"   data-pattern="[count] Reviews"></div></a>
+                </div>
+                {% endif %}
+                {% comment %}
+                <div class="tag-card-product btn-design2">
+                  <h3 class="tag-text-product">
+                    New
+                  </h3>
+                </div>
+                <span class="percentage-item-muscles" data-compare="{{ product.compare_at_price| money_without_currency }}" data-price="{{ product.price| money_without_currency }}"></span>
+                 {% endcomment %}
+                {% assign featured_image = current_variant.featured_image | default: product.featured_image %}
+                <a href="{{ product.url }}" class="d-block w-100 text-center"><img loading="lazy" class="img-product-custom" id="img-product-custom" src="{{ featured_image | img_url: 'grande' }}" {% if settings.product_zoom_enable %}data-mfp-src="{{ featured_image | img_url: '1024x1024' }}"{% endif %} alt="{{ featured_image.alt | escape }}" data-image-id="{{ featured_image.id }}"></a>
+                <div class="content-product-card show-desktop">
+                  {% comment %}
+                  <div class="on-sale-content-product-card">
+                    <span>On Sale - Previously {{product.compare_at_price | money}}</span>
+                  </div>
+                  {% endcomment %}
+                  <h3 class="title-product-card animate-section-text animate-section-text2" data-aos-delay="50">
+                    <a href="{{ product.url }}">{{ product.title }}</a>
+                  </h3>
+                  <p class="p-product-price">From £ {{product.price | money_without_currency}} {% if product.compare_at_price > product.price %}<span class="compare-price">£ {{product.compare_at_price | money_without_currency}}</span>{% endif %}</p>
+                  {% comment %}
+                  <div class="box-text-product-card">
+                    <a href="{{ product.url }}"><p>Experience unmatched, calibrated doses of speed, depth, and precision to target muscle tissue 15mm deep at 30 skin contacts per second.</p></a>
+                  </div>
+                  <div class="content-button-product">
+                    <button class="btn-design1 btn-product-1" type="submit">Add to Cart – £ {{product.price | money_without_currency}}</button>
+                  </div>
+                  {% endcomment %}
+                </div>
+              </div>
+              <div class="content-product-card show-mobile">
+                <h3 class="title-product-card animate-section-text animate-section-text2" data-aos-delay="50">
+                  <a href="{{ product.url }}">{{ product.title }}</a>
+                </h3>
+                {% comment %}
+                <div class="box-text-product-card">
+                  <a href="{{ product.url }}"><p>Experience unmatched, calibrated doses of speed, depth, and precision to target muscle tissue 15mm deep at 30 skin contacts per second.</p></a>
+                </div>
+                {% endcomment %}
+                {% comment %}
+                <div class="content-button-product btn-design1 btn-product-1">
+                  
+                  <div class="on-sale-content-product-card">
+                    <span>On Sale - Previously {{product.compare_at_price | money}}</span>
+                  </div>
+                  <button class="btn-design1 btn-product-1" type="submit">Add to Cart – £ {{product.price | money_without_currency}}</button>
+                  
+                </div>
+                {% endcomment %}
+              </div>
+            </form>
+          </div>
+          {% endif %}
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+{% schema %}
+{
+  "name": {
+    "cs": "Stránky s kolekcemi",
+    "da": "Kollektionssider",
+    "de": "Kategorie-Seiten",
+    "en": "Collection pages",
+    "es": "Páginas de colección",
+    "fi": "Kokoelman sivut",
+    "fr": "Pages de collections",
+    "it": "Pagine di collezioni",
+    "ja": "コレクションページ",
+    "ko": "컬렉션 페이지",
+    "nb": "Samlingssider",
+    "nl": "Collectiepagina's",
+    "pl": "Strony kolekcji",
+    "pt-BR": "Páginas de coleções",
+    "pt-PT": "Páginas de coleções",
+    "sv": "Produktseriesidor",
+    "th": "หน้าคอลเลกชัน",
+    "tr": "Koleksiyon sayfaları",
+    "vi": "Trang bộ sưu tập",
+    "zh-CN": "产品系列页面",
+    "zh-TW": "商品系列頁面"
+  },
+  "settings": [
+    {
+      "type": "select",
+      "id": "layout",
+      "label": {
+        "cs": "Rozvržení",
+        "da": "Layout",
+        "de": "Layout",
+        "en": "Layout",
+        "es": "Diseño",
+        "fi": "Asettelu",
+        "fr": "Mise en page",
+        "it": "Layout",
+        "ja": "レイアウト",
+        "ko": "레이아웃",
+        "nb": "Oppsett",
+        "nl": "Opmaak",
+        "pl": "Układ",
+        "pt-BR": "Layout",
+        "pt-PT": "Esquema",
+        "sv": "Layout",
+        "th": "เลย์เอาต์",
+        "tr": "Düzen",
+        "vi": "Bố cục",
+        "zh-CN": "布局",
+        "zh-TW": "版面配置"
+      },
+      "default": "grid",
+      "options": [
+        {
+          "value": "grid",
+          "label": {
+            "cs": "Mřížka",
+            "da": "Gitter",
+            "de": "Raster",
+            "en": "Grid",
+            "es": "Cuadrícula",
+            "fi": "Ruudukko",
+            "fr": "Grille",
+            "it": "Griglia",
+            "ja": "グリッド",
+            "ko": "그리드",
+            "nb": "Rutenett",
+            "nl": "Grid",
+            "pl": "Siatka",
+            "pt-BR": "Grade",
+            "pt-PT": "Grelha",
+            "sv": "Rutnät",
+            "th": "กริด",
+            "tr": "Izgara",
+            "vi": "Lưới",
+            "zh-CN": "网格",
+            "zh-TW": "網格"
+          }
+        },
+        {
+          "value": "list",
+          "label": {
+            "cs": "Seznam",
+            "da": "Liste",
+            "de": "Liste",
+            "en": "List",
+            "es": "Lista",
+            "fi": "Luettelo",
+            "fr": "Liste",
+            "it": "Elenco",
+            "ja": "リスト",
+            "ko": "목록",
+            "nb": "Liste",
+            "nl": "Lijst",
+            "pl": "Lista",
+            "pt-BR": "Lista",
+            "pt-PT": "Lista",
+            "sv": "Lista",
+            "th": "รายการ",
+            "tr": "Liste",
+            "vi": "Danh sách",
+            "zh-CN": "列表",
+            "zh-TW": "清單"
+          }
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "grid",
+      "label": {
+        "cs": "Počet produktů na řádek (jen mřížka)",
+        "da": "Produkter pr. række (kun gitter)",
+        "de": "Produkte per Reihe (nur Raster)",
+        "en": "Products per row (grid only)",
+        "es": "Productos por fila (solo cuadrícula)",
+        "fi": "Tuotteita per rivi (vain ruudukko)",
+        "fr": "Produits par rangée (grille uniquement)",
+        "it": "Prodotti per riga (solo griglia)",
+        "ja": "行あたりの商品数（グリッドのみ）",
+        "ko": "열 별 제품 (그리드 전용)",
+        "nb": "Produkter per rad (kun rutenett)",
+        "nl": "Producten per rij (alleen grid)",
+        "pl": "Liczba produktów na wiersz (tylko siatka)",
+        "pt-BR": "Produtos por linha (somente grade)",
+        "pt-PT": "Produtos por linha (somente grelha)",
+        "sv": "Produkter per rad (endast rutnät)",
+        "th": "สินค้าต่อแถว (กริดเท่านั้น)",
+        "tr": "Satır başına ürün (yalnızca ızgara)",
+        "vi": "Số sản phẩm trên một hàng (chỉ ở kiểu lưới)",
+        "zh-CN": "每行产品数（仅限网格）",
+        "zh-TW": "每列產品數 (僅限網格)"
+      },
+      "default": 4,
+      "min": 2,
+      "max": 5,
+      "step": 1
+    },
+    {
+      "type": "range",
+      "id": "rows",
+      "label": {
+        "cs": "Počet řádků na stránku (jen mřížka)",
+        "da": "Rækker pr. side (kun gitter)",
+        "de": "Reihen per Seite (nur Raster)",
+        "en": "Rows per page (grid only)",
+        "es": "Filas por página (solo cuadrícula)",
+        "fi": "Rivejä per sivu (vain ruudukko)",
+        "fr": "Rangées par page (grille uniquement)",
+        "it": "Righe per pagina (solo griglia)",
+        "ja": "ページあたりの行数（グリッドのみ）",
+        "ko": "페이지 별 열 (그리드 전용)",
+        "nb": "Rader per side (kun rutenett)",
+        "nl": "Rijen per pagina (alleen grid)",
+        "pl": "Liczba wierszy na stronę (tylko siatka)",
+        "pt-BR": "Linhas por página (somente grade)",
+        "pt-PT": "Linhas por página (somente grelha)",
+        "sv": "Rader per sida (endast rutnät)",
+        "th": "แถวต่อหน้า (กริดเท่านั้น)",
+        "tr": "Sayfa başına satır (yalnızca ızgara)",
+        "vi": "Số hàng trong một trang (chỉ ở kiểu lưới)",
+        "zh-CN": "每行产品数（仅限网格）",
+        "zh-TW": "每頁列數 (僅限網格)"
+      },
+      "default": 2,
+      "min": 2,
+      "max": 8,
+      "step": 1
+    },
+    {
+      "type": "checkbox",
+      "id": "show_collection_image",
+      "label": {
+        "cs": "Zobrazit obrázek kolekce",
+        "da": "Vis kollektionsbillede",
+        "de": "Kategorie-Foto anzeigen",
+        "en": "Show collection image",
+        "es": "Mostrar imagen de la colección",
+        "fi": "Näytä kokoelman kuva",
+        "fr": "Afficher l'image de la collection",
+        "it": "Mostra immagine collezione",
+        "ja": "コレクションの画像を表示する",
+        "ko": "컬렉션 이미지 표시",
+        "nb": "Vis samlingsbilde",
+        "nl": "Collectieafbeelding weergeven",
+        "pl": "Pokaż obraz kolekcji",
+        "pt-BR": "Exibir imagem da coleção",
+        "pt-PT": "Mostrar imagem da coleção",
+        "sv": "Visa produktseriebilder",
+        "th": "แสดงรูปภาพคอลเลกชัน",
+        "tr": "Koleksiyon görselini göster",
+        "vi": "Hiển thị hình ảnh bộ sưu tập",
+        "zh-CN": "显示产品系列图片",
+        "zh-TW": "顯示商品系列圖片"
+      },
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "label": {
+        "cs": "Zobrazit dodavatele produktů",
+        "da": "Vis produktleverandører",
+        "de": "Produktanbieter anzeigen",
+        "en": "Show product vendors",
+        "es": "Mostrar proveedores del producto",
+        "fi": "Näytä tuotteen myyjät",
+        "fr": "Afficher les vendeurs",
+        "it": "Mostra fornitori prodotto",
+        "ja": "商品の販売元を表示する",
+        "ko": "제품 공급 업체 표시",
+        "nb": "Vis produktleverandører",
+        "nl": "Productleveranciers weergeven",
+        "pl": "Pokaż dostawców produktu",
+        "pt-BR": "Exibir fabricantes do produto",
+        "pt-PT": "Mostrar fornecedores do produto",
+        "sv": "Visa produktleverantörer",
+        "th": "แสดงผู้ขายสินค้า",
+        "tr": "Ürün satıcılarını göster",
+        "vi": "Hiển thị nhà cung cấp sản phẩm",
+        "zh-CN": "显示产品厂商",
+        "zh-TW": "顯示產品廠商"
+      },
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "sort_enable",
+      "label": {
+        "cs": "Povolit řazení",
+        "da": "Aktivér sortering",
+        "de": "Sortieren erlauben",
+        "en": "Enable sorting",
+        "es": "Habilitar la función ordenar",
+        "fi": "Ota lajittelu käyttöön",
+        "fr": "Activer le tri",
+        "it": "Permetti di ordinare",
+        "ja": "並べ替えを有効にする",
+        "ko": "정렬 사용",
+        "nb": "Aktiver sortering",
+        "nl": "Sortering inschakelen",
+        "pl": "Włącz sortowanie",
+        "pt-BR": "Habilitar organização",
+        "pt-PT": "Ativar ordenação",
+        "sv": "Aktivera sortering",
+        "th": "เปิดใช้การจัดเรียง",
+        "tr": "Sıralamayı etkinleştir",
+        "vi": "Bật phân loại",
+        "zh-CN": "启用排序",
+        "zh-TW": "啟用排序"
+      },
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "tags_enable",
+      "label": {
+        "cs": "Povolit filtrování podle štítku",
+        "da": "Aktivér tagfiltrering",
+        "de": "Tag-Filtern erlauben",
+        "en": "Enable tag filtering",
+        "es": "Habilitar filtro de etiquetas",
+        "fi": "Ota tunnisteiden suodatus käyttöön",
+        "fr": "Activer le filtrage par balises",
+        "it": "Attiva filtro tag",
+        "ja": "タグでの絞り込みを有効にする",
+        "ko": "태그 필터링 사용",
+        "nb": "Aktiver taggfiltrering",
+        "nl": "Filteren op tags inschakelen",
+        "pl": "Włącz filtrowanie tagów",
+        "pt-BR": "Habilitar filtragem de tags",
+        "pt-PT": "Ativar filtragem por etiqueta",
+        "sv": "Aktivera taggfiltrering",
+        "th": "เปิดใช้การกรองแท็ก",
+        "tr": "Etiket filtrelemeyi etkinleştir",
+        "vi": "Bật lọc thẻ",
+        "zh-CN": "启用标签筛选",
+        "zh-TW": "啟用標籤篩選功能"
+      },
+      "default": true
+    }
+  ]
+}
+{% endschema %}

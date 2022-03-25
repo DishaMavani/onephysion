@@ -1,0 +1,78 @@
+{% if section.settings.show_section != blank %}
+{% if product.metafields.feature_compare_sec.feature_compare_sec != 'false' %}
+<section class="product-compare-feature">
+  <div class="container">
+    <div class="product-compare-wrapper">
+      {% if section.settings.title != blank %}
+      <div class="title">
+        <h2 class="h2">{{ section.settings.title }}</h2>
+      </div>
+      {% endif %}
+      <div class="Product-compare-inner">
+        {% assign pro_list = product.metafields.compare_pro_list.compare_pro_list | split : '|' %}
+        {% for item in pro_list %}
+        {% assign pro_handle = item | remove: '["' | remove: '"]' %}
+          {% assign pro = all_products[pro_handle] %}
+          <div class="product-grid col-{{ pro_list.size }}">
+          <div class="product-grid-wrap">
+            <div class="product-device-wrap">
+              <div class="image-wrap">
+                <a href="{{ pro.url }}">
+                  <img loading="lazy" src="{{ pro.featured_image | img_url: 'master' }}" alt="{{ pro.title }}">
+                </a>
+              </div>
+              <div class="device-content">
+                <h3 class="device-headline">{{ pro.title }}</h3>
+                <p class="compare-price">{{ pro.price | money }}</p>
+                <div class="buy-product">
+                  <a href="{{ pro.url }}" class="button button-reduced">Buy</a>
+                </div>
+              </div>
+            </div>
+            <div class="compare-grid-wrapper">
+              {% assign size = pro.metafields.feature_order.feature_order.size | minus : 1 %}
+              {% for i in (0..size) %}
+              <div class="compare-features">
+                {% if pro.metafields.feature_unavailable.feature_unavailable[i] != 'true' %}
+                <div class="feature-wrapper">
+                  {% comment %}
+                  {% if product.metafields.feature_image.feature_image != blank %}
+                  <img loading="lazy" src="{{product.metafields.feature_image.feature_image | img_url: 'master' }}" alt="">
+                  {% endif %}
+                  {% endcomment %}
+                  <img loading="lazy" src="https://www.apple.com/v/airpods/shared/compare/a/images/compare/icon_spatial_audio__kmoa5vlnkdmm_large.png" alt="">
+                  <span class="feature-title">{{pro.metafields.feature_text.feature_text[i]}}</span>
+                </div>
+                {% else %}
+                <p class="mdash">—</p>
+                {% endif %}
+              </div>
+              {% endfor %}
+            </div>
+            </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Product Compare",
+    "settings": [
+		{
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_section",
+          "label": "Show Section"
+        }
+	]
+  }
+{% endschema %}
